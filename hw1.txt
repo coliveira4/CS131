@@ -1,0 +1,23 @@
+
+subset:
+this function uses pattern matching and recursion along with a helper function 'mem' that checks if an item is a member of a list to check if all the items in list a are in list b, making it a subset. This implementation is fairly straightforward.
+
+equal_sets:
+this function uses the mathematical trick that two equal sets are subsets of each other. I originally tried to use pattern matching and recursion but this implemetation is much cleaner.
+
+set_union:
+this function again uses pattern matching and tail recursion (as most of the rest do, i wont mention it again) to construct the union of the sets by going throught the first one and appending any items that dont appear in the second list, to the second list.
+
+set_intersection: 
+similar to set union but instead builds the intersection not union using tial recursion.
+
+set_diff:
+this function is exaclty the same as set_intersection except for the 'not' in line 4. I orgiginally tried to reimplement this function from scratch but soon realised it is the same as set intersection with the boolean inversion.    
+
+computed_fixed_point:
+this function simply uses recursion to recurse the function until f(x) eq x . Originally tried to do pattern matching but conditionals are nore natrual for this function.
+   
+filter_reachable:
+this function uses helper function 'final_filter' which goes throught the rules recursively and checks the reuslts of helper function 'filter_work' with the terminal items filtered out (using 'remove_stuff') which recursively adds items to a looked_at list if they are reachable from any item in to_looked_at which originally just contains the first object in the input tuple and is recursively added to as we reach nonterminals. helper function 'match_rules' is also used here to match an item, x, with the first item in a list of tuples, rules, and return a list of the scnds from all matching tuples. I built this solution incrementally, adding helper functions when i needed to do an additional recursion for readability.
+  
+

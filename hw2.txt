@@ -1,0 +1,50 @@
+
+Assesment for HW2 CS181
+
+-- why you decided to write make_parser in terms of make_matcher
+, or vice versa?
+
+make_matcher is not called in my make_parser function but the
+code is largely reused from make_matcher, since I needed 
+something slightly different. I copy-pasted my helper 
+functions for the matcher function and made slight changes
+for them to work with the parser function to get the 
+frag devs, since the functionalities are very similar. 
+my make_parser takes the rule list of some N and parses
+it to find what the dev is. This required a 
+breadth-first-search approach, which requires that 
+the recursion is able to backtrack when it reaches a 
+nonmatching prefix, to shift and try a different one 
+to see if we can find a correct match make_parser 
+then uses a mutually recursive setup to construct the
+parse tree using this parsed output of the derivation 
+of the fragment. Its algorithim for executing this 
+per node is as follows: if nonterminal 
+then for each item in nonterminals rules, start another 
+search here, getting all the subtrees for the parent 
+Node in question. if terminal, then insert 
+it as leaf node and continue searching the rules.
+This implementation very closely follows the flow 
+of my make_matcher, just with the few changes mentioned.
+
+
+--explain any weaknesses in your solution in the context 
+of its intended application.
+
+it is possible for make_parser to get stuck in an infinite
+loop in the case of a nonterminal that calls itself. 
+However, context free grammars, which is the "context 
+of the intended application" for this project should 
+not have loops such as this that would cause an execution 
+failure/infinite loop of my program. Another known limitaion 
+of the make_parser is that is does not call the make_matcher
+function. This leads to inefficiency of code, as it was hinted 
+in class that make_parser should be trivial is make_matcher is
+implemented in a certain way. However, given the time contraints 
+I was unable to figure out how to remove the redundant 
+code without cuasing execution failures. However, though 
+it is less readable, there is really no performance penalties 
+for this problem, so I just decided to leave it
+it. Additionally, I had an exhaustive pattern matching 
+issue that kept breaking my code when I tried to fix it so 
+I left in a Warning which hopefully doesnt impact grading too much.
